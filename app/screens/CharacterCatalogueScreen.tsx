@@ -1,24 +1,25 @@
-import React, {useEffect} from 'react';
-import {getAllPeople} from '../services';
+import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {useQuery} from '@tanstack/react-query';
+import useCharacterData from '../hooks/UseCharacters';
 
 export const CharacterCatalogueScreen = () => {
-  const {data} = useQuery({
-    queryKey: ['characters'],
-    queryFn: () => getAllPeople(),
-  });
+  const {characters, status} = useCharacterData();
 
-  useEffect(() => {
-    if (data) {
-      console.log(data);
-    }
-  }, [data]);
+  if (status === 'pending') {
+    <View style={styles.container}>
+      <Text>loading...</Text>
+    </View>;
+  }
 
+  if (status === 'error') {
+    <View style={styles.container}>
+      <Text>error!</Text>
+    </View>;
+  }
   return (
     <View style={styles.container}>
       <Text>Characters catalogue</Text>
-      <Text>{data && JSON.stringify(data)}</Text>
+      <Text>{characters && JSON.stringify(characters)}</Text>
     </View>
   );
 };

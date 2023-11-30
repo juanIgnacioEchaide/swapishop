@@ -10,14 +10,4 @@ const getPlanetsByPage = async (page: string | number) => {
   return data;
 };
 
-const getPlanetsById = async (id: number) => {
-  const {data} = await api.planets.getById(id);
-  return data;
-};
-
-const searchPlanets = async (params: string) => {
-  const {data} = await api.planets.search(params);
-  return data;
-};
-
-export {getPlanetsById, getAllPlanets, getPlanetsByPage, searchPlanets};
+export {getAllPlanets, getPlanetsByPage};

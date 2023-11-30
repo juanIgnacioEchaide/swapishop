@@ -1,31 +1,6 @@
-export {
-  getPeopleById,
-  getAllPeople,
-  getPeopleByPage,
-  searchPeople,
-} from './people';
-export {
-  getPlanetsById,
-  getAllPlanets,
-  getPlanetsByPage,
-  searchPlanets,
-} from './planet';
-export {
-  getAllSpecies,
-  getSpeciesByPage,
-  getSpeciesById,
-  searchSpecies,
-} from './species';
-export {
-  getStarshipsById,
-  getAllStarships,
-  getStarshipsByPage,
-  searchStarship,
-} from './starship';
-export {getFilmsByPage, getAllFilms, getFilmsById, searchFilms} from './films';
-export {
-  getAllVehicles,
-  getVehiclesByPage,
-  getVehiclesById,
-  searchVehicles,
-} from './vehicles';
+export {getAllPeople, getPeopleByPage} from './people';
+export {getAllPlanets, getPlanetsByPage} from './planet';
+export {getAllSpecies, getSpeciesByPage} from './species';
+export {getAllStarships, getStarshipsByPage} from './starship';
+export {getFilmsByPage, getAllFilms} from './films';
+export {getAllVehicles, getVehiclesByPage} from './vehicles';

@@ -10,14 +10,4 @@ const getStarshipsByPage = async (page: string | number) => {
   return data;
 };
 
-const getStarshipsById = async (id: number) => {
-  const {data} = await api.starship.getById(id);
-  return data;
-};
-
-const searchStarship = async (stringParam: string) => {
-  const {data} = await api.starship.search(stringParam);
-  return data;
-};
-
-export {getStarshipsById, getAllStarships, getStarshipsByPage, searchStarship};
+export {getAllStarships, getStarshipsByPage};
