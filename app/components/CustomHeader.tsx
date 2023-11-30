@@ -4,7 +4,7 @@ import {StyleSheet, Text, View} from 'react-native';
 export const CustomHeader = () => {
   return (
     <View style={styles.headerContainer}>
-      <Text style={styles.headerTitle}>swapishop</Text>
+      <Text style={styles.headerTitle}>Swapishop</Text>
     </View>
   );
 };
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   headerTitle: {
-    fontFamily: 'NovaSqaure',
+    fontFamily: 'NovaSquare',
     fontSize: 20,
     fontWeight: '700',
     color: '#333333',
