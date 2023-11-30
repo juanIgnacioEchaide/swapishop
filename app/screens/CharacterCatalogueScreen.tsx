@@ -1,25 +1,30 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, FlatList} from 'react-native';
 import useCharacterData from '../hooks/UseCharacters';
+import {ThumbNail} from '../components/ThumbNail';
+import {People} from '../models';
 
 export const CharacterCatalogueScreen = () => {
-  const {characters, status} = useCharacterData();
+  const {characters, isLoading} = useCharacterData();
 
-  if (status === 'pending') {
+  if (isLoading) {
     <View style={styles.container}>
       <Text>loading...</Text>
     </View>;
   }
 
-  if (status === 'error') {
-    <View style={styles.container}>
-      <Text>error!</Text>
-    </View>;
-  }
+  const renderThumbNail = ({item}: {item: People}) => {
+    return <ThumbNail item={item} />;
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Characters catalogue</Text>
-      <Text>{characters && JSON.stringify(characters)}</Text>
+    <View>
+      <FlatList
+        data={characters}
+        renderItem={renderThumbNail}
+        keyExtractor={character => character.name}
+        contentContainerStyle={styles.container}
+      />
     </View>
   );
 };
@@ -30,5 +35,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'red',
+  },
+  descriptionContainer: {
+    textAlign: 'left',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 200,
   },
 });

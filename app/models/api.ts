@@ -62,7 +62,6 @@ export interface Vehicle {
   created: string;
   crew: string;
   edited: string;
-  /* url to fetch by id */
   films: string[];
   length: string;
   manufacturer: string;
