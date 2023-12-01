@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, FlatList} from 'react-native';
+import {StyleSheet, View, Text, FlatList, Dimensions} from 'react-native';
 import useCharacterData from '../hooks/UseCharacters';
 import {ThumbNail} from '../components/ThumbNail';
 import {People} from '../models';
@@ -71,9 +71,12 @@ export const CharacterCatalogueScreen = () => {
   );
 };
 
+const windowWidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
   container: {
     height: '100%',
+    width: windowWidth,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'red',

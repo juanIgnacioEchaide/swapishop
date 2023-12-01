@@ -48,10 +48,6 @@ const useCharacterData = () => {
     fetchData();
   }, [page, fetchData]);
 
-  useEffect(() => {
-    console.log('pagination', pagination, 'characters', characters);
-  });
-
   return {
     characters,
     isLoading,
