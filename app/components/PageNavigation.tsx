@@ -50,9 +50,12 @@ export const PageNavigation = ({
 
 const styles = StyleSheet.create({
   container: {
+    width: '50%',
+    overflow: 'hidden',
+    borderRadius: 8,
     flexDirection: 'row',
     bottom: 30,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
   paginationDisplay: {
     justifyContent: 'center',

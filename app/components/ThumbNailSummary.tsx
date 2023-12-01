@@ -6,7 +6,7 @@ import {VIEW} from '../constants';
 const PeopleThumbnail = (item: People) => {
   return (
     <View style={styles.thumbNailContainer}>
-      <Text>{JSON.stringify(item?.name)}</Text>
+      <Text>{item?.name}</Text>
     </View>
   );
 };
@@ -82,7 +82,11 @@ export const ThumbNailSummary = ({
 
 const styles = StyleSheet.create({
   thumbNailContainer: {
+    borderRadius: 8,
     justifyContent: 'center',
+    height: 50,
+    width: '50%',
+    backgroundColor: 'white',
     alignItems: 'center',
   },
 });

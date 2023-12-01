@@ -48,7 +48,7 @@ export const CharacterCatalogueScreen = () => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={characters}
         renderItem={renderThumbNail}
@@ -77,12 +77,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'red',
-  },
-  descriptionContainer: {
-    textAlign: 'left',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 200,
   },
 });

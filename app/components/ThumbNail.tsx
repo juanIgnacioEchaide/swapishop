@@ -50,35 +50,11 @@ const styles = StyleSheet.create({
     width: 200,
     marginRight: 20,
   },
-  artistName: {
-    fontSize: 20,
-    fontWeight: '700',
-  },
-  year: {
-    fontWeight: '400',
-  },
-  artworkTitle: {
-    textAlign: 'justify',
-  },
-  imageContainer: {
-    width: 200,
-  },
   thumbNailContainer: {
-    marginVertical: 10,
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  listContainer: {
-    paddingHorizontal: 16,
-  },
-  unavailableContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#3333',
-  },
-  unavailableText: {
-    color: '#ffff',
-    fontSize: 18,
-    fontWeight: 'bold',
+    marginVertical: 2,
+    display: 'flex',
+    flexDirection: 'row',
   },
 });
