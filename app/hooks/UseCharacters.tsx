@@ -6,7 +6,7 @@ import {useEffect} from 'react';
 const useCharacterData = () => {
   const {characters, setCharacters} = useCharacterStore();
   const {data: charactersData, isLoading} = useQuery({
-    queryKey: ['characters'],
+    queryKey: ['allCharacters'],
     queryFn: getAllPeople,
   });
 

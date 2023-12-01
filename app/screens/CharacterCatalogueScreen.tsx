@@ -5,9 +5,11 @@ import {ThumbNail} from '../components/ThumbNail';
 import {People} from '../models';
 import {VIEW, defaultPeopleItem} from '../constants';
 import {DetailsModal} from '../components';
+import {PageNavigation} from '../components/PageNavigation';
 
 export const CharacterCatalogueScreen = () => {
   const {characters, isLoading} = useCharacterData();
+  const [loadingPage, setLoadingPage] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<People>(defaultPeopleItem);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
@@ -15,7 +17,7 @@ export const CharacterCatalogueScreen = () => {
     setModalVisible(false);
   };
 
-  if (isLoading) {
+  if (isLoading || loadingPage) {
     return (
       <View style={styles.container}>
         <Text>Loading...</Text>
@@ -49,6 +51,12 @@ export const CharacterCatalogueScreen = () => {
           item={selectedItem}
         />
       )}
+      <PageNavigation
+        currentPage={0}
+        total={0}
+        limit={0}
+        setLoadingPage={setLoadingPage}
+      />
     </View>
   );
 };
