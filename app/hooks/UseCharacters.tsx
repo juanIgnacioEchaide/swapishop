@@ -15,13 +15,13 @@ const useCharacterData = () => {
       const allPeople = await getAllPeople();
       setCharacters(allPeople.results);
       setPagination({current: page, next: 0, previous: 0, totalPages: 0});
-      data = allPeople.results; // Set the data variable to the fetched results
+      data = allPeople.results;
     } else {
       const peopleByPage = await getPeopleByPage(page);
       setCharacters(peopleByPage.results);
-      data = peopleByPage.results; // Set the data variable to the fetched results
+      data = peopleByPage.results;
     }
-    return data; // Return the fetched results
+    return data;
   }, [page, setCharacters, setPagination]);
 
   const {isLoading} = useQuery({
