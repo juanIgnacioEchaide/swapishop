@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     fontWeight: '800',
+    color: 'black',
   },
   value: {
     fontSize: 16,
