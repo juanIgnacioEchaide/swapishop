@@ -7,14 +7,14 @@ interface CharacterStore {
   pagination: {
     totalPages: number;
     current: number | undefined;
-    next: number | undefined;
-    previous: number | undefined;
+    next: number | null;
+    previous: number | null;
   };
   setPagination: (pagination: {
     totalPages: number;
     current: number | undefined;
-    next: number | undefined;
-    previous: number | undefined;
+    next: number | null;
+    previous: number | null;
   }) => void;
 }
 

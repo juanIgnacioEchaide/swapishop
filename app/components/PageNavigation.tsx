@@ -4,28 +4,21 @@ import {View, Button, StyleSheet, Text} from 'react-native';
 export const PageNavigation = ({
   currentPage,
   total,
-  setLoadingPage,
   setPage,
 }: {
   currentPage: number;
   total: number;
-  limit: number;
-  setLoadingPage: React.Dispatch<React.SetStateAction<boolean>>;
   setPage: React.Dispatch<React.SetStateAction<number | undefined>>;
 }) => {
   const handlePreviousPage = useCallback(() => {
     if (currentPage > 1) {
-      setLoadingPage(true);
       setPage(currentPage - 1);
     }
-  }, [currentPage, setLoadingPage, setPage]);
+  }, [currentPage, setPage]);
 
   const handleNextPage = useCallback(() => {
-    if (currentPage < total && total !== 0) {
-      setLoadingPage(true);
-      setPage(currentPage + 1);
-    }
-  }, [currentPage, total, setLoadingPage, setPage]);
+    setPage(currentPage + 1);
+  }, [currentPage, setPage]);
 
   return (
     <View style={styles.container}>
@@ -33,7 +26,7 @@ export const PageNavigation = ({
         <Button
           title="<"
           onPress={handlePreviousPage}
-          disabled={currentPage === 1}
+          disabled={currentPage === 1} // Disable if on the first page
         />
       </View>
       <View style={styles.paginationDisplay}>
@@ -43,7 +36,7 @@ export const PageNavigation = ({
         <Button
           title=">"
           onPress={handleNextPage}
-          disabled={currentPage === total || total === 0}
+          disabled={currentPage === total} // Disable if on the last page
         />
       </View>
     </View>
@@ -53,7 +46,7 @@ export const PageNavigation = ({
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    bottom: 20,
+    bottom: 30,
     justifyContent: 'space-between',
   },
   paginationDisplay: {

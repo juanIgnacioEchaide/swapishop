@@ -8,8 +8,11 @@ import {DetailsModal} from '../components';
 import {PageNavigation} from '../components/PageNavigation';
 
 export const CharacterCatalogueScreen = () => {
-  const {characters, isLoading, setPage} = useCharacterData();
-  const [loadingPage, setLoadingPage] = useState<boolean>(false);
+  const {characters, isLoading, error, setPage, pagination} =
+    useCharacterData();
+
+  const {current, totalPages} = pagination;
+
   const [selectedItem, setSelectedItem] = useState<People>(defaultPeopleItem);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
@@ -17,10 +20,18 @@ export const CharacterCatalogueScreen = () => {
     setModalVisible(false);
   };
 
-  if (isLoading || loadingPage) {
+  if (isLoading) {
     return (
       <View style={styles.container}>
         <Text>Loading...</Text>
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text>Ups!</Text>
       </View>
     );
   }
@@ -52,10 +63,8 @@ export const CharacterCatalogueScreen = () => {
         />
       )}
       <PageNavigation
-        currentPage={0}
-        total={0}
-        limit={0}
-        setLoadingPage={setLoadingPage}
+        currentPage={current || 0}
+        total={totalPages}
         setPage={setPage}
       />
     </View>
