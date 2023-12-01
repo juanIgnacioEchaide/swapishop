@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   headerTitle: {
-    fontFamily: 'NovaSquare',
+    fontFamily: 'Arial-unicode, sans-serif',
     fontSize: 20,
     fontWeight: '700',
     color: '#333333',

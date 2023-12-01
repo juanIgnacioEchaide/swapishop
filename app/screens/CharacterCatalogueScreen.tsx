@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, FlatList, Dimensions} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  Dimensions,
+  ActivityIndicator,
+} from 'react-native';
 import useCharacterData from '../hooks/UseCharacters';
 import {ThumbNail} from '../components/ThumbNail';
 import {People} from '../models';
@@ -23,7 +30,7 @@ export const CharacterCatalogueScreen = () => {
   if (isLoading) {
     return (
       <View style={styles.container}>
-        <Text>Loading...</Text>
+        <ActivityIndicator size={'large'} color={'#ffff'} />
       </View>
     );
   }
@@ -46,14 +53,14 @@ export const CharacterCatalogueScreen = () => {
       />
     );
   };
-
   return (
     <View style={styles.container}>
       <FlatList
         data={characters}
         renderItem={renderThumbNail}
         keyExtractor={character => character.name}
-        contentContainerStyle={styles.container}
+        contentContainerStyle={styles.flatlistContainer}
+        numColumns={2}
       />
       {modalVisible && (
         <DetailsModal
@@ -77,8 +84,16 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
     width: windowWidth,
+    padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'red',
+    backgroundColor: 'black',
+  },
+  flatlistContainer: {
+    width: 400,
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'black',
   },
 });

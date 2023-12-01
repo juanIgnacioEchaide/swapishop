@@ -26,7 +26,7 @@ export const PageNavigation = ({
         <Button
           title="<"
           onPress={handlePreviousPage}
-          disabled={currentPage === 1} // Disable if on the first page
+          disabled={currentPage === 1}
         />
       </View>
       <View style={styles.paginationDisplay}>
@@ -36,7 +36,7 @@ export const PageNavigation = ({
         <Button
           title=">"
           onPress={handleNextPage}
-          disabled={currentPage === total} // Disable if on the last page
+          disabled={currentPage === total}
         />
       </View>
     </View>
