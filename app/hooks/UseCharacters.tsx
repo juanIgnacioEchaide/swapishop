@@ -7,41 +7,50 @@ import {getPageNumberFromString, getTotalPages} from '../helpers';
 type DataFetchingFunction<T> = () => Promise<T>;
 
 const useCharacterData = () => {
-  const [page, setPage] = useState<number | undefined>(1);
+  const [page, setPage] = useState<number | undefined>(undefined);
   const {characters, setCharacters, setPagination, pagination} =
     useCharacterStore();
 
   const fetchData: DataFetchingFunction<any> = useCallback(async () => {
     let data = null;
-    if (page === 1 || !page) {
+    if (typeof page === 'undefined') {
       const {results, next, previous, count} = await getAllPeople();
 
-      const totalItems = count;
+      setCharacters(results);
+      setPagination({
+        current: 1,
+        next: getPageNumberFromString(next),
+        previous: getPageNumberFromString(previous),
+        totalPages: getTotalPages(count),
+      });
+      data = results;
+    } else {
+      const {results, next, previous, count} = await getPeopleByPage(page);
       setCharacters(results);
       setPagination({
         current: page,
         next: getPageNumberFromString(next),
         previous: getPageNumberFromString(previous),
-        totalPages: getTotalPages(totalItems),
+        totalPages: getTotalPages(count),
       });
-      data = results;
-    } else {
-      const peopleByPage = await getPeopleByPage(page);
-      setCharacters(peopleByPage.results);
-      data = peopleByPage.results;
-    }
 
+      data = results;
+    }
     return data;
   }, [page, setCharacters, setPagination]);
 
   const {isLoading, error} = useQuery({
-    queryKey: ['characters'],
+    queryKey: ['characters', page],
     queryFn: fetchData,
   });
 
   useEffect(() => {
     fetchData();
   }, [page, fetchData]);
+
+  useEffect(() => {
+    console.log('pagination', pagination, 'characters', characters);
+  });
 
   return {
     characters,

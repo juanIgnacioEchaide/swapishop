@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {View, Button, StyleSheet, Text} from 'react-native';
 
 export const PageNavigation = ({
@@ -10,6 +10,10 @@ export const PageNavigation = ({
   total: number;
   setPage: React.Dispatch<React.SetStateAction<number | undefined>>;
 }) => {
+  useEffect(() => {
+    console.log('buttons', currentPage);
+  }, [currentPage, setPage]);
+
   const handlePreviousPage = useCallback(() => {
     if (currentPage > 1) {
       setPage(currentPage - 1);
@@ -17,6 +21,7 @@ export const PageNavigation = ({
   }, [currentPage, setPage]);
 
   const handleNextPage = useCallback(() => {
+    console.log('next');
     setPage(currentPage + 1);
   }, [currentPage, setPage]);
 
