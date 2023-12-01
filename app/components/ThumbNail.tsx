@@ -16,6 +16,7 @@ export const ThumbNail = ({
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const handleSelection = useCallback(() => {
+    console.log(item);
     setSelectedItem(item);
     setModalVisible(true);
   }, [item, setModalVisible, setSelectedItem]);
@@ -36,7 +37,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    flexWrap: 'wrap',
   },
   descriptionContainer: {
     marginTop: 10,
@@ -53,6 +53,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 2,
     display: 'flex',
-    flexDirection: 'row',
   },
 });

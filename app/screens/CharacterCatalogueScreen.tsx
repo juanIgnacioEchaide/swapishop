@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
   },
   flatlistContainer: {
     width: 400,
+    height: '100%',
     padding: 10,
     justifyContent: 'center',
     alignItems: 'center',

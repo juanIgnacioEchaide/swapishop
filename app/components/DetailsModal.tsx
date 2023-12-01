@@ -1,6 +1,7 @@
 import React from 'react';
 import {Modal, StyleSheet, TouchableOpacity, View, Text} from 'react-native';
-import {Film, People, Planet, Specie, Starship} from '../models';
+import {People} from '../models';
+import {PeopleDetail} from './PeopleDetail';
 
 export const DetailsModal = ({
   visible,
@@ -9,7 +10,7 @@ export const DetailsModal = ({
 }: {
   visible: boolean;
   onClose: () => void;
-  item: People | Starship | Specie | Planet | Film;
+  item: People;
 }) => {
   return (
     <Modal
@@ -19,7 +20,7 @@ export const DetailsModal = ({
       onRequestClose={onClose}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>{JSON.stringify(item)}</Text>
+          <PeopleDetail {...item} />
           <TouchableOpacity onPress={onClose} style={styles.closeButton}>
             <Text style={styles.closeText}>Close</Text>
           </TouchableOpacity>
@@ -31,12 +32,14 @@ export const DetailsModal = ({
 
 const styles = StyleSheet.create({
   centeredView: {
-    flex: 1,
+    marginTop: 50,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalView: {
+    width: 600,
+    height: 400,
     margin: 10,
     backgroundColor: 'white',
     borderRadius: 10,
