@@ -7,17 +7,22 @@ type DataFetchingFunction<T> = () => Promise<T>;
 
 const useCharacterData = () => {
   const [page, setPage] = useState<number | undefined>(0);
-  const {characters, setCharacters} = useCharacterStore();
+  const {characters, setCharacters, setPagination} = useCharacterStore();
 
   const fetchData: DataFetchingFunction<any> = useCallback(async () => {
+    let data = null;
     if (page === 0 || typeof page === 'undefined') {
       const allPeople = await getAllPeople();
       setCharacters(allPeople.results);
+      setPagination({current: page, next: 0, previous: 0, totalPages: 0});
+      data = allPeople.results; // Set the data variable to the fetched results
     } else {
       const peopleByPage = await getPeopleByPage(page);
       setCharacters(peopleByPage.results);
+      data = peopleByPage.results; // Set the data variable to the fetched results
     }
-  }, [page, setCharacters]);
+    return data; // Return the fetched results
+  }, [page, setCharacters, setPagination]);
 
   const {isLoading} = useQuery({
     queryKey: ['allCharacters'],
