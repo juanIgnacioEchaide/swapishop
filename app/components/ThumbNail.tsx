@@ -1,16 +1,30 @@
-import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {Film, People, Planet, Specie, Starship} from '../models';
-//import {ThumbnailSummary} from './ThumbNailSummary';
+import React, {useCallback} from 'react';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import {People} from '../models';
+import {ThumbNailSummary} from './ThumbNailSummary';
+import {VIEW} from '../constants';
 
 export const ThumbNail = ({
   item,
+  type,
+  setSelectedItem,
+  setModalVisible,
 }: {
-  item: People | Starship | Specie | Planet | Film;
+  item: People;
+  type: VIEW;
+  setSelectedItem: React.Dispatch<React.SetStateAction<People>>;
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const handleSelection = useCallback(() => {
+    setSelectedItem(item);
+    setModalVisible(true);
+  }, [item, setModalVisible, setSelectedItem]);
+
   return (
-    <TouchableOpacity style={styles.thumbNailContainer}>
-      <Text>{JSON.stringify(item)}</Text>
+    <TouchableOpacity
+      style={styles.thumbNailContainer}
+      onPress={handleSelection}>
+      <ThumbNailSummary item={item} type={type} />
     </TouchableOpacity>
   );
 };

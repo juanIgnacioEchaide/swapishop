@@ -6,7 +6,7 @@ import {VIEW} from '../constants';
 const PeopleThumbnail = (item: People) => {
   return (
     <View style={styles.thumbNailContainer}>
-      <Text>{JSON.stringify(item)}</Text>
+      <Text>{JSON.stringify(item?.name)}</Text>
     </View>
   );
 };
