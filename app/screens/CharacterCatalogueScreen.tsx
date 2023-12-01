@@ -8,7 +8,7 @@ import {DetailsModal} from '../components';
 import {PageNavigation} from '../components/PageNavigation';
 
 export const CharacterCatalogueScreen = () => {
-  const {characters, isLoading} = useCharacterData();
+  const {characters, isLoading, setPage} = useCharacterData();
   const [loadingPage, setLoadingPage] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<People>(defaultPeopleItem);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -56,6 +56,7 @@ export const CharacterCatalogueScreen = () => {
         total={0}
         limit={0}
         setLoadingPage={setLoadingPage}
+        setPage={setPage}
       />
     </View>
   );

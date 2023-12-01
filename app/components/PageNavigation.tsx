@@ -1,35 +1,31 @@
 import React, {useCallback} from 'react';
 import {View, Button, StyleSheet, Text} from 'react-native';
-import {SwapiResponse} from '../models';
 
 export const PageNavigation = ({
   currentPage,
   total,
   setLoadingPage,
+  setPage,
 }: {
   currentPage: number;
   total: number;
   limit: number;
   setLoadingPage: React.Dispatch<React.SetStateAction<boolean>>;
-  fetchByPage?: (page: number) => Promise<SwapiResponse<any>>;
+  setPage: React.Dispatch<React.SetStateAction<number | undefined>>;
 }) => {
   const handlePreviousPage = useCallback(() => {
     if (currentPage > 1) {
       setLoadingPage(true);
-      /* fetchByPage(currentPage - 1)
-        .then(() => setLoadingPage(false))
-        .catch(() => setLoadingPage(false));*/
+      setPage(currentPage - 1);
     }
-  }, [currentPage, setLoadingPage]);
+  }, [currentPage, setLoadingPage, setPage]);
 
   const handleNextPage = useCallback(() => {
     if (currentPage < total && total !== 0) {
       setLoadingPage(true);
-      /*fetchByPage(currentPage + 1)
-        .then(() => setLoadingPage(false))
-        .catch(() => setLoadingPage(false));*/
+      setPage(currentPage + 1);
     }
-  }, [currentPage, total, setLoadingPage]);
+  }, [currentPage, total, setLoadingPage, setPage]);
 
   return (
     <View style={styles.container}>
