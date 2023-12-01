@@ -38,11 +38,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalView: {
-    width: 600,
+    width: 420,
     height: 400,
     margin: 10,
     backgroundColor: 'white',
-    borderRadius: 10,
     padding: 35,
     justifyContent: 'center',
     alignItems: 'center',
@@ -60,7 +59,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   closeButton: {
-    marginTop: 10,
+    marginTop: 20,
     padding: 10,
     borderRadius: 5,
     backgroundColor: 'black',

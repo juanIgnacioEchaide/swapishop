@@ -1,11 +1,12 @@
 import React from 'react';
 import {RowSingleValue} from './RowSingleValue';
-import {View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {People} from '../models';
 
 export const PeopleDetail = (item: People) => {
   return (
     <View>
+      <Text style={styles.title}>{item?.name}</Text>
       <RowSingleValue label="Birth year" value={item?.birthYear} />
       <RowSingleValue label="Eye color" value={item?.eyeColor} />
       <RowSingleValue label="Gender" value={item?.gender} />
@@ -16,3 +17,13 @@ export const PeopleDetail = (item: People) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 30,
+    fontWeight: '900',
+    color: 'black',
+    bottom: 10,
+    marginBottom: 10,
+  },
+});
