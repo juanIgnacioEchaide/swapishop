@@ -1,8 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import {useInfiniteQuery} from '@tanstack/react-query';
-import {ThumbNail} from '../components';
-import {View, StyleSheet, Text, FlatList, ListRenderItem} from 'react-native';
+import {DetailsModal, ThumbNail} from '../components';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  ListRenderItem,
+  Dimensions,
+} from 'react-native';
 import {People, SwapiResponse} from '../models';
 import {URI, VIEW} from '../constants';
 
@@ -13,7 +19,7 @@ export const CharactersCatalogueScreen = () => {
     );
     return data;
   };
-  
+
   const [selectedItem, setSelectedItem] = useState<People>({} as People);
   const [showModalVisible, setShowModalVisible] = useState<boolean>(false);
 
@@ -29,12 +35,6 @@ export const CharactersCatalogueScreen = () => {
     },
   });
 
-  useEffect(() => {
-    if (data) {
-      console.log(data);
-    }
-  }, [data]);
-
   const renderThumbNail: ListRenderItem<People> = ({item}: {item: People}) => {
     return (
       <View>
@@ -47,19 +47,41 @@ export const CharactersCatalogueScreen = () => {
       </View>
     );
   };
+  const columns = 2;
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={data?.results}
+        data={data?.pages?.flatMap(page => page?.results)}
         renderItem={renderThumbNail}
         onEndReached={() => fetchNextPage()}
         onEndReachedThreshold={0.4}
+        numColumns={columns}
+        contentContainerStyle={styles.list}
       />
+      {showModalVisible && (
+        <DetailsModal
+          visible={false}
+          onClose={() => setShowModalVisible(false)}
+          item={selectedItem}
+        />
+      )}
     </View>
   );
 };
 
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    justifyContent: 'center',
+    alignContent: 'center',
+    width: width,
+    height: height,
+  },
+  list: {
+    width: width - 10,
+    height: height - 10,
+  },
 });
