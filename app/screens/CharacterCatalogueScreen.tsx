@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {useInfiniteQuery} from '@tanstack/react-query';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {ThumbNail} from '../components';
+import {View, StyleSheet, Text, FlatList, ListRenderItem} from 'react-native';
 import {People, SwapiResponse} from '../models';
-import {URI} from '../constants';
+import {URI, VIEW} from '../constants';
 
 export const CharactersCatalogueScreen = () => {
   const getPeople = async (page: any) => {
@@ -12,9 +13,12 @@ export const CharactersCatalogueScreen = () => {
     );
     return data;
   };
+  
+  const [selectedItem, setSelectedItem] = useState<People>({} as People);
+  const [showModalVisible, setShowModalVisible] = useState<boolean>(false);
 
   const {data, fetchNextPage} = useInfiniteQuery<SwapiResponse<People>>({
-    queryKey: ['starwars'],
+    queryKey: ['characters'],
     initialPageParam: 1,
     queryFn: ({pageParam = 1}) => getPeople(pageParam),
     getNextPageParam: (lastPage: SwapiResponse<People>) => {
@@ -31,11 +35,27 @@ export const CharactersCatalogueScreen = () => {
     }
   }, [data]);
 
+  const renderThumbNail: ListRenderItem<People> = ({item}: {item: People}) => {
+    return (
+      <View>
+        <ThumbNail
+          item={item}
+          type={VIEW.PEOPLE}
+          setSelectedItem={setSelectedItem}
+          setModalVisible={setShowModalVisible}
+        />
+      </View>
+    );
+  };
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => fetchNextPage()}>
-        <Text>next</Text>
-      </TouchableOpacity>
+      <FlatList
+        data={data?.results}
+        renderItem={renderThumbNail}
+        onEndReached={() => fetchNextPage()}
+        onEndReachedThreshold={0.4}
+      />
     </View>
   );
 };
