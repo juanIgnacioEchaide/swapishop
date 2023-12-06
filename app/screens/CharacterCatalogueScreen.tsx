@@ -1,100 +1,74 @@
-import React, {useState} from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList,
-  Dimensions,
-  ActivityIndicator,
-} from 'react-native';
-import useCharacterData from '../hooks/UseCharacters';
-import {ThumbNail} from '../components/ThumbNail';
-import {People} from '../models';
-import {VIEW, defaultPeopleItem} from '../constants';
-import {DetailsModal} from '../components';
-import {PageNavigation} from '../components/PageNavigation';
+import {useInfiniteQuery} from '@tanstack/react-query';
+import React, {useCallback} from 'react';
+import {View, Text, StyleSheet, ListRenderItem} from 'react-native';
+import {getPeopleByPage} from '../services';
+import {People, SwapiResponse} from '../models';
+import {FlatList} from 'react-native-gesture-handler';
 
-export const CharacterCatalogueScreen = () => {
-  const {characters, isLoading, error, setPage, pagination} =
-    useCharacterData();
+export const CharactersCatalogueScreen = () => {
+  const getItems = useCallback(
+    async (page: number): Promise<SwapiResponse<People> | Error> => {
+      try {
+        const res = await getPeopleByPage(page);
+        return res;
+      } catch (e: any) {
+        return Error('items fetch failed');
+      }
+    },
+    [],
+  );
 
-  const {current, totalPages} = pagination;
+  const getPageParam = useCallback((lastPage: SwapiResponse<People>) => {
+    const urlParams = new URLSearchParams(lastPage?.next?.split('?')[1]);
+    return parseInt(urlParams.get('page') || '1', 10);
+  }, []);
 
-  const [selectedItem, setSelectedItem] = useState<People>(defaultPeopleItem);
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const {data, fetchNextPage} = useInfiniteQuery({
+    queryKey: ['characters'],
+    queryFn: ({pageParam}: {pageParam: number}) => getItems(pageParam),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage: SwapiResponse<People>) => {
+      if (lastPage && lastPage.next) {
+        return getPageParam(lastPage);
+      }
+      return undefined;
+    },
+    getPreviousPageParam: firstPage => {
+      if (firstPage && firstPage.previous) {
+        const urlParams = new URLSearchParams(firstPage.previous.split('?')[1]);
+        return parseInt(urlParams.get('page') || '1', 10);
+      }
+      return undefined;
+    },
+  });
 
-  const closeModal = () => {
-    setModalVisible(false);
-  };
-
-  if (isLoading) {
+  const renderItem: ListRenderItem<any> = ({item}: {item: {name: string}}) => {
     return (
-      <View style={styles.container}>
-        <ActivityIndicator size={'large'} color={'#ffff'} />
+      <View key={item.name}>
+        <Text>{item.name}</Text>
       </View>
     );
-  }
-
-  if (error) {
-    return (
-      <View style={styles.container}>
-        <Text>Ups!</Text>
-      </View>
-    );
-  }
-
-  const renderThumbNail = ({item}: {item: People}) => {
-    return (
-      <ThumbNail
-        item={item}
-        type={VIEW.PEOPLE}
-        setSelectedItem={setSelectedItem}
-        setModalVisible={setModalVisible}
-      />
-    );
   };
+
   return (
     <View style={styles.container}>
       <FlatList
-        data={characters}
-        renderItem={renderThumbNail}
-        keyExtractor={character => character.name}
-        contentContainerStyle={styles.flatlistContainer}
+        data={data?.pages.flatMap(page => page.results) || []}
+        renderItem={renderItem}
+        onEndReached={({distanceFromEnd}) => {
+          if (distanceFromEnd < 0) {
+            return;
+          }
+          fetchNextPage();
+        }}
+        onEndReachedThreshold={0.1}
         numColumns={2}
       />
-      {modalVisible && (
-        <DetailsModal
-          visible={modalVisible}
-          onClose={closeModal}
-          item={selectedItem}
-        />
-      )}
-      <PageNavigation
-        currentPage={current || 0}
-        total={totalPages}
-        setPage={setPage}
-      />
+      <View>{JSON.stringify(data)}</View>
     </View>
   );
 };
 
-const windowWidth = Dimensions.get('window').width;
-
 const styles = StyleSheet.create({
-  container: {
-    height: '100%',
-    width: windowWidth,
-    padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'black',
-  },
-  flatlistContainer: {
-    width: 400,
-    height: '100%',
-    padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'black',
-  },
+  container: {},
 });

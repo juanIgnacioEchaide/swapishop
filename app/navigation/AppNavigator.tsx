@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {CharacterCatalogueScreen, PlaceholderScreen} from '../screens';
+import {CharactersCatalogueScreen, PlaceholderScreen} from '../screens';
 import {NavigationContainer} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {CustomHeader} from '../components';
@@ -52,7 +52,7 @@ const AppNavigator = () => {
         initialRouteName="CharacterCatalogue">
         <Stack.Screen
           name="CharacterCatalogue"
-          component={CharacterCatalogueScreen}
+          component={CharactersCatalogueScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
