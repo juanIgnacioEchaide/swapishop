@@ -1,91 +1,22 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {Film, People, Planet, Specie, Starship} from '../models';
-import {VIEW} from '../constants';
+import {StyleSheet, Text, View, Image} from 'react-native';
+import {People} from '../models';
 
-const PeopleThumbnail = (item: People) => {
+export const ThumbNailSummary = ({item, uri}: {item: People; uri: string}) => {
   return (
     <View style={styles.thumbNailContainer}>
       <Text>{item?.name}</Text>
+      <Image source={{uri: uri}} />
     </View>
   );
-};
-
-const SpecieThumbnail = (item: Specie) => {
-  return (
-    <View style={styles.thumbNailContainer}>
-      <Text>{JSON.stringify(item)}</Text>
-    </View>
-  );
-};
-
-const PlanetThumbnail = (item: Planet) => {
-  return (
-    <View style={styles.thumbNailContainer}>
-      <Text>{JSON.stringify(item)}</Text>
-    </View>
-  );
-};
-
-const FilmThumbnail = (item: Film) => {
-  return (
-    <View style={styles.thumbNailContainer}>
-      <Text>{JSON.stringify(item)}</Text>
-    </View>
-  );
-};
-
-const StarshipThumbnail = (item: Starship) => {
-  return (
-    <View style={styles.thumbNailContainer}>
-      <Text>{JSON.stringify(item)}</Text>
-    </View>
-  );
-};
-
-export const ThumbNailSummary = ({
-  item,
-  type,
-}: {
-  item: People | Specie | Planet | Film | Starship;
-  type: VIEW;
-}) => {
-  let thumbnailComponent;
-
-  switch (type) {
-    case VIEW.PEOPLE:
-      thumbnailComponent = <PeopleThumbnail {...(item as People)} />;
-      break;
-    case VIEW.PLANETS:
-      thumbnailComponent = <PlanetThumbnail {...(item as Planet)} />;
-      break;
-    case VIEW.STARSHIP:
-      thumbnailComponent = <StarshipThumbnail {...(item as Starship)} />;
-      break;
-    case VIEW.SPECIES:
-      thumbnailComponent = <SpecieThumbnail {...(item as Specie)} />;
-      break;
-    case VIEW.FILMS:
-      thumbnailComponent = <FilmThumbnail {...(item as Film)} />;
-      break;
-    default:
-      thumbnailComponent = (
-        <View style={styles.thumbNailContainer}>
-          <Text>Unsupported item type</Text>
-        </View>
-      );
-      break;
-  }
-
-  return thumbnailComponent;
 };
 
 const styles = StyleSheet.create({
   thumbNailContainer: {
     borderRadius: 8,
-    justifyContent: 'center',
-    height: 50,
-    width: '50%',
+    justifyContent: 'space-around',
+    height: 100,
+    width: 375,
     backgroundColor: 'white',
     alignItems: 'center',
   },

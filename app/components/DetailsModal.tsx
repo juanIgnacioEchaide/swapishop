@@ -19,11 +19,11 @@ export const DetailsModal = ({
       visible={visible}
       onRequestClose={onClose}>
       <View style={styles.centeredView}>
+        <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+          <Text style={styles.closeText}>X</Text>
+        </TouchableOpacity>
         <View style={styles.modalView}>
           <PeopleDetail {...item} />
-          <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-            <Text style={styles.closeText}>Close</Text>
-          </TouchableOpacity>
         </View>
       </View>
     </Modal>
@@ -32,14 +32,14 @@ export const DetailsModal = ({
 
 const styles = StyleSheet.create({
   centeredView: {
-    marginTop: 50,
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalView: {
     width: 420,
-    height: 400,
+    height: 500,
     margin: 10,
     backgroundColor: 'white',
     padding: 35,
@@ -59,8 +59,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   closeButton: {
-    marginTop: 20,
-    padding: 10,
+    zIndex: 2,
+    top: 55,
+    left: -170,
+    justifyContent: 'flex-start',
+    width: 30,
+    padding: 5,
     borderRadius: 5,
     backgroundColor: 'black',
   },

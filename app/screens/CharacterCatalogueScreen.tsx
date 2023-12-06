@@ -2,14 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import {useInfiniteQuery} from '@tanstack/react-query';
 import {DetailsModal, ThumbNail} from '../components';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  ListRenderItem,
-  Dimensions,
-  Text,
-} from 'react-native';
+import {View, StyleSheet, FlatList, ListRenderItem, Text} from 'react-native';
 import {People, SwapiResponse} from '../models';
 import {URI, VIEW} from '../constants';
 
@@ -22,7 +15,7 @@ export const CharactersCatalogueScreen = () => {
   };
 
   const [selectedItem, setSelectedItem] = useState<People>({} as People);
-  const [showModalVisible, setShowModalVisible] = useState<boolean>(false);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const {
     data: characters,
@@ -44,7 +37,7 @@ export const CharactersCatalogueScreen = () => {
         item={item}
         type={VIEW.PEOPLE}
         setSelectedItem={setSelectedItem}
-        setModalVisible={() => setShowModalVisible(true)}
+        setModalVisible={setModalVisible}
       />
     );
   };
@@ -58,46 +51,39 @@ export const CharactersCatalogueScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.screenContainer}>
       <FlatList
+        contentContainerStyle={styles.listContainer}
         data={characters?.pages?.flatMap(page => page?.results)}
         renderItem={renderThumbNail}
         onEndReached={() => fetchNextPage()}
-        onEndReachedThreshold={0.1}
-        contentContainerStyle={styles.list}
-        // eslint-disable-next-line react/no-unstable-nested-components
-        ListFooterComponent={() => (
-          <>
-            <Text>loadingmore...</Text>
-          </>
-        )}
+        onEndReachedThreshold={0.3}
       />
-      {showModalVisible && (
-        <DetailsModal
-          visible={false}
-          onClose={() => setShowModalVisible(false)}
-          item={selectedItem}
-        />
-      )}
+      <DetailsModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        item={selectedItem}
+      />
     </View>
   );
 };
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'blue',
+export const styles = StyleSheet.create({
+  descriptionContainer: {
+    textAlign: 'left',
+    display: 'flex',
     justifyContent: 'center',
-    alignContent: 'center',
-    width: 700,
-    height: height,
+    alignItems: 'center',
+    width: 200,
   },
-  list: {
+  screenContainer: {
     backgroundColor: 'green',
-    width: width - 2,
-    height: 700,
-    marginVertical: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  listContainer: {
+    width: '100%',
+    paddingHorizontal: 16,
   },
 });
