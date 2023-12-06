@@ -1,6 +1,6 @@
 import {AxiosResponse} from 'axios';
 import {URI} from '../constants';
-import {People, Planet, Starship, SwapiResponse} from '../models';
+import {People, Planet, SwapiResponse} from '../models';
 import {apiClient} from './apiClient';
 
 const api = {
@@ -9,10 +9,10 @@ const api = {
       const data = apiClient.get(URI.PEOPLE);
       return data;
     },
-    getByPage: (
-      page: number,
-    ): Promise<AxiosResponse<SwapiResponse<People>>> => {
-      const data = apiClient.get(`${URI.PEOPLE}/?page=${page}`);
+    getByPage: (page: number) => {
+      const data = apiClient.get<SwapiResponse<People>>(
+        !page ? URI.PEOPLE : `${URI.PEOPLE}/?page=${page}`,
+      );
       return data;
     },
   },
