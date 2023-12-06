@@ -23,6 +23,7 @@ export const ThumbNail = ({
 
   return (
     <TouchableOpacity
+      key={item.name}
       style={styles.thumbNailContainer}
       onPress={handleSelection}>
       <ThumbNailSummary item={item} type={type} />
@@ -31,21 +32,30 @@ export const ThumbNail = ({
 };
 
 const styles = StyleSheet.create({
-  descriptionContainer: {
-    marginTop: 10,
-    textAlign: 'left',
-    display: 'flex',
+  container: {
+    backgroundColor: 'blue',
+    flex: 1, // Change from height: height
     justifyContent: 'center',
-    alignItems: 'center',
-    width: 200,
-    marginRight: 20,
-    height: 500,
+    alignContent: 'center',
+  },
+  list: {
+    backgroundColor: 'green',
+    flex: 1,
+    marginVertical: 2,
   },
   thumbNailContainer: {
-    width: 300,
+    width: '100%',
+    height: 100, // Change to a fixed pixel value
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 2,
     display: 'flex',
+  },
+  descriptionContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignContent: 'center',
+    marginRight: 20,
+    width: '100%',
+    height: '10%', // Review and adjust height if necessary
   },
 });
