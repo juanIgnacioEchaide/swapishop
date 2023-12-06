@@ -31,13 +31,6 @@ export const ThumbNail = ({
 };
 
 const styles = StyleSheet.create({
-  container: {
-    width: 350,
-    height: 350,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   descriptionContainer: {
     marginTop: 10,
     textAlign: 'left',
@@ -46,6 +39,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 200,
     marginRight: 20,
+    height: 500,
   },
   thumbNailContainer: {
     width: 300,

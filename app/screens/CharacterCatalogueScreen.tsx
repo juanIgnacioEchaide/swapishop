@@ -14,6 +14,7 @@ import {URI, VIEW} from '../constants';
 
 export const CharactersCatalogueScreen = () => {
   const getPeople = async (page: any) => {
+    console.log('getPeople', page);
     const {data} = await axios.get<SwapiResponse<People>>(
       !page ? URI.PEOPLE : `${URI.PEOPLE}/?page=${page}`,
     );
@@ -23,16 +24,14 @@ export const CharactersCatalogueScreen = () => {
   const [selectedItem, setSelectedItem] = useState<People>({} as People);
   const [showModalVisible, setShowModalVisible] = useState<boolean>(false);
 
-  const {data, fetchNextPage} = useInfiniteQuery<SwapiResponse<People>>({
+  const {data: characters, fetchNextPage} = useInfiniteQuery<
+    SwapiResponse<People>
+  >({
     queryKey: ['characters'],
     initialPageParam: 1,
-    queryFn: ({pageParam = 1}) => getPeople(pageParam),
-    getNextPageParam: (lastPage: SwapiResponse<People>) => {
-      if (!lastPage?.next) {
-        return undefined;
-      }
-      return lastPage.next.split('=')[1] + 1;
-    },
+    queryFn: ({pageParam}) => getPeople(pageParam),
+    getNextPageParam: (lastPage: SwapiResponse<People>) =>
+      lastPage?.next ? lastPage?.next.split('=')[1] + 1 : undefined,
   });
 
   const renderThumbNail: ListRenderItem<People> = ({item}: {item: People}) => {
@@ -42,21 +41,23 @@ export const CharactersCatalogueScreen = () => {
           item={item}
           type={VIEW.PEOPLE}
           setSelectedItem={setSelectedItem}
-          setModalVisible={setShowModalVisible}
+          setModalVisible={() => setShowModalVisible(true)}
         />
       </View>
     );
   };
-  const columns = 2;
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={data?.pages?.flatMap(page => page?.results)}
+        data={characters?.pages?.flatMap(page => page?.results)}
         renderItem={renderThumbNail}
-        onEndReached={() => fetchNextPage()}
-        onEndReachedThreshold={0.4}
-        numColumns={columns}
+        onEndReached={({distanceFromEnd}) => {
+          if (distanceFromEnd < 0.1) {
+            fetchNextPage();
+          }
+        }}
+        onEndReachedThreshold={0.1}
         contentContainerStyle={styles.list}
       />
       {showModalVisible && (
@@ -81,7 +82,8 @@ const styles = StyleSheet.create({
     height: height,
   },
   list: {
-    width: width - 10,
-    height: height - 10,
+    width: width - 2,
+    height: 600,
+    marginVertical: 10,
   },
 });
