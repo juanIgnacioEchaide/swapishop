@@ -31,11 +31,17 @@ export const CharactersCatalogueScreen = () => {
     refetchOnMount: false,
   });
 
-  const renderThumbNail: ListRenderItem<People> = ({item}: {item: People}) => {
+  const renderThumbNail: ListRenderItem<{item: People; image: string}> = ({
+    item,
+    image,
+  }: {
+    item: People;
+    image: string;
+  }) => {
     return (
       <ThumbNail
         item={item}
-        type={VIEW.PEOPLE}
+        image={image}
         setSelectedItem={setSelectedItem}
         setModalVisible={setModalVisible}
       />
