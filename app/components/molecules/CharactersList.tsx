@@ -1,5 +1,5 @@
 import React from 'react';
-import {DetailsModal, ThumbNail} from '../../components';
+import {ThumbNail} from '../../components';
 import {View, StyleSheet, FlatList, ListRenderItem} from 'react-native';
 import {People, SwapiResponse} from '../../models';
 import {Color} from '../../constants';
@@ -9,6 +9,7 @@ import {
   InfiniteData,
   InfiniteQueryObserverResult,
 } from '@tanstack/react-query';
+import {DetailsModal} from '../organisms';
 
 export const CharactersList = ({
   setSelectedItem,

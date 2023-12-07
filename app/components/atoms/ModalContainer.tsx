@@ -1,16 +1,14 @@
-import React from 'react';
-import {Modal, StyleSheet, TouchableOpacity, View, Text} from 'react-native';
-import {People} from '../models';
-import {PeopleDetail} from './PeopleDetail';
+import React, {ReactNode} from 'react';
+import {Modal, StyleSheet, View} from 'react-native';
 
-export const DetailsModal = ({
+export const ModalContainer = ({
+  children,
   visible,
   onClose,
-  item,
 }: {
   visible: boolean;
   onClose: () => void;
-  item: People;
+  children: ReactNode;
 }) => {
   return (
     <Modal
@@ -18,14 +16,7 @@ export const DetailsModal = ({
       transparent={true}
       visible={visible}
       onRequestClose={onClose}>
-      <View style={styles.centeredView}>
-        <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-          <Text style={styles.closeText}>X</Text>
-        </TouchableOpacity>
-        <View style={styles.modalView}>
-          <PeopleDetail {...item} />
-        </View>
-      </View>
+      <View style={styles.centeredView}>{children}</View>
     </Modal>
   );
 };

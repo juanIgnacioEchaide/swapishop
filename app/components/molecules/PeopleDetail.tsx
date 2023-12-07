@@ -1,7 +1,7 @@
 import React from 'react';
-import {RowSingleValue} from './RowSingleValue';
 import {StyleSheet, Text, View} from 'react-native';
-import {People} from '../models';
+import {People} from '../../models';
+import {RowSingleValue} from '../atoms';
 
 export const PeopleDetail = (item: People) => {
   return (
