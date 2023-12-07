@@ -114,3 +114,30 @@ export interface SwapiResponse<T> {
   previous: string | null;
   results: T[];
 }
+
+export interface AkababResponse {
+  id: number;
+  name: string;
+  height: number;
+  mass: number;
+  gender: string;
+  homeworld: string;
+  species: string;
+  wiki: string;
+  image: string;
+  dateCreated: number;
+  dateDestroyed: number;
+  destroyedLocation: string;
+  creator: string;
+  manufacturer: string;
+  model: string;
+  class: string;
+  sensorColor: string;
+  platingColor: string;
+  equipment: string;
+  affiliations: string[];
+  skinColor: string;
+  eyeColor: string;
+  born: number;
+  formerAffiliations: string[];
+}

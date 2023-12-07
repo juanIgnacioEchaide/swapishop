@@ -1,2 +1,2 @@
-export * from './getTotalPages';
+export * from './getIdFromURL';
 export * from './getPageNumberFromString';

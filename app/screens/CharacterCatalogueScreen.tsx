@@ -4,7 +4,8 @@ import {useInfiniteQuery} from '@tanstack/react-query';
 import {DetailsModal, ThumbNail} from '../components';
 import {View, StyleSheet, FlatList, ListRenderItem, Text} from 'react-native';
 import {People, SwapiResponse} from '../models';
-import {URI, VIEW} from '../constants';
+import {URI} from '../constants';
+import {getIdFromURL} from '../helpers';
 
 export const CharactersCatalogueScreen = () => {
   const getPeople = async (page: any) => {
@@ -31,17 +32,12 @@ export const CharactersCatalogueScreen = () => {
     refetchOnMount: false,
   });
 
-  const renderThumbNail: ListRenderItem<{item: People; image: string}> = ({
-    item,
-    image,
-  }: {
-    item: People;
-    image: string;
-  }) => {
+  const renderThumbNail: ListRenderItem<People> = ({item}: {item: People}) => {
+    console.log(item?.url);
     return (
       <ThumbNail
         item={item}
-        image={image}
+        imageId={getIdFromURL(item?.url[0])}
         setSelectedItem={setSelectedItem}
         setModalVisible={setModalVisible}
       />

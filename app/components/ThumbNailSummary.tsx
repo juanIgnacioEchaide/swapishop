@@ -2,11 +2,19 @@ import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {People} from '../models';
 
-export const ThumbNailSummary = ({item, uri}: {item: People; uri: string}) => {
+export const ThumbNailSummary = ({
+  item,
+  uri,
+  notAvailable,
+}: {
+  item: People;
+  uri: string;
+  notAvailable: boolean;
+}) => {
   return (
     <View style={styles.thumbNailContainer}>
       <Text>{item?.name}</Text>
-      <Image source={{uri: uri}} />
+      <Image source={{uri: notAvailable ? '' : uri}} />
     </View>
   );
 };

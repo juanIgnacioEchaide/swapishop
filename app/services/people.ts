@@ -1,13 +1,10 @@
-import {People, SwapiResponse} from '../models';
-import {api} from './api';
+import axios from 'axios';
+import {URI} from '../constants';
+import {SwapiResponse, People} from '../models';
 
-const getAllPeople = async (): Promise<SwapiResponse<People>> => {
-  const {data} = await api.people.getAll();
+export const getPeople = async (page: any) => {
+  const {data} = await axios.get<SwapiResponse<People>>(
+    !page ? URI.PEOPLE : `${URI.PEOPLE}/?page=${page}`,
+  );
   return data;
 };
-const getPeopleByPage = async (page: number) => {
-  const {data} = await api.people.getByPage(page);
-  return data;
-};
-
-export {getAllPeople, getPeopleByPage};

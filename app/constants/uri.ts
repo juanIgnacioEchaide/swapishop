@@ -8,19 +8,7 @@ export enum URI {
   FILMS = 'https://swapi.dev/api/films',
   SPECIES = 'https://swapi.dev/api/species',
   VEHICLES = 'https://swapi.dev/api/vehicles',
-}
-
-export enum ROUTES {
-  DEFAULT = '',
-  BASE = '/',
-  HOME = '/home',
-  PEOPLE = '/people',
-  PLANETS = '/planets',
-  STARSHIP = '/starship',
-  FILMS = '/films',
-  VEHICLES = '/vehicles',
-  SPECIES = '/species',
-  SEARCH = '/search',
+  IMAGES = 'https://akabab.github.io/starwars-api/api/id/',
 }
 
 export enum VIEW {
