@@ -4,6 +4,7 @@ import {CharactersCatalogueScreen, PlaceholderScreen} from '../screens';
 import {NavigationContainer} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AppHeader} from '../components';
+import {Color} from '../constants';
 
 const Stack = createStackNavigator<RootStackParamList>();
 export type RootStackParamList = {
@@ -44,7 +45,7 @@ const AppNavigator = () => {
       <Stack.Navigator
         screenOptions={{
           header: AppHeader,
-          headerTintColor: '#333333',
+          headerTintColor: Color.SECONDARY,
           headerStyle: {
             height: 80,
           },

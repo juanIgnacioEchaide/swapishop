@@ -1,7 +1,7 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {People} from '../models';
+import {Color} from '../constants';
 
 export const ThumbNailSummary = ({
   item,
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   celuloidBorder: {
     width: 20,
     height: 20,
-    backgroundColor: 'grey',
+    backgroundColor: Color.SECONDARY,
   },
   text: {
     top: 100,

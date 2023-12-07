@@ -1,6 +1,7 @@
 import React, {ReactNode} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {CloseButton} from '../atoms';
+import {Color} from '../../constants';
 
 export const ModalContentContainer = ({
   children,
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     width: 420,
     height: 500,
     margin: 10,
-    backgroundColor: 'white',
+    backgroundColor: Color.SECONDARY,
     padding: 35,
     justifyContent: 'center',
     alignItems: 'center',

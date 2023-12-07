@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import {useInfiniteQuery} from '@tanstack/react-query';
 import {People, SwapiResponse} from '../../models';
-import {URI} from '../../constants';
+import {Color, URI} from '../../constants';
 import {CharactersList} from '../../components/molecules';
 import {Loader} from '../../components/atoms';
-import {StyleSheet, View} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 
 export const Characters = () => {
   const getPeople = async (page: any) => {
@@ -53,8 +53,15 @@ export const Characters = () => {
   );
 };
 
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
   loaderContainer: {
-    marginTop: 20,
+    alignContent: 'center',
+    justifyContent: 'center',
+    height: height,
+    width: width,
+    backgroundColor: Color.SECONDARY,
   },
 });
