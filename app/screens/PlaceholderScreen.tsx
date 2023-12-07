@@ -23,10 +23,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    transform: [{rotate: '-30deg'}], // Rotate 30 degrees to the left
-    lineHeight: 110, // Adjust line height as needed
-    top: 20, // Move the text slightly upward
-    // Other styles
+    transform: [{rotate: '-30deg'}],
+    lineHeight: 110,
+    top: 20,
     fontWeight: 'bold',
     borderRadius: 10,
     backgroundColor: 'transparent',

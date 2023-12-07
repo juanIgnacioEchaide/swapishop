@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-import axios from 'axios';
 import {useInfiniteQuery} from '@tanstack/react-query';
 import {People, SwapiResponse} from '../../models';
-import {Color, URI} from '../../constants';
+import {Color} from '../../constants';
 import {CharactersList} from '../../components/molecules';
 import {Loader} from '../../components/atoms';
 import {Dimensions, StyleSheet, View} from 'react-native';
