@@ -2,9 +2,16 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import {useInfiniteQuery} from '@tanstack/react-query';
 import {DetailsModal, ThumbNail} from '../components';
-import {View, StyleSheet, FlatList, ListRenderItem, Text} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  ListRenderItem,
+  Text,
+  ActivityIndicator,
+} from 'react-native';
 import {People, SwapiResponse} from '../models';
-import {URI} from '../constants';
+import {Color, URI} from '../constants';
 import {getIdFromURL} from '../helpers';
 
 export const CharactersCatalogueScreen = () => {
@@ -32,12 +39,19 @@ export const CharactersCatalogueScreen = () => {
     refetchOnMount: false,
   });
 
+  const renderLoader = () => {
+    return (
+      <View style={styles.loader}>
+        <ActivityIndicator size="large" color={Color.PRIMARY} />
+      </View>
+    );
+  };
+
   const renderThumbNail: ListRenderItem<People> = ({item}: {item: People}) => {
-    console.log(item?.url);
     return (
       <ThumbNail
         item={item}
-        imageId={getIdFromURL(item?.url[0])}
+        imageId={getIdFromURL(item.url)}
         setSelectedItem={setSelectedItem}
         setModalVisible={setModalVisible}
       />
@@ -46,8 +60,8 @@ export const CharactersCatalogueScreen = () => {
 
   if (isLoading) {
     return (
-      <View>
-        <Text>loading</Text>
+      <View style={styles.loader}>
+        <ActivityIndicator size="large" color={Color.PRIMARY} />
       </View>
     );
   }
@@ -60,6 +74,7 @@ export const CharactersCatalogueScreen = () => {
         renderItem={renderThumbNail}
         onEndReached={() => fetchNextPage()}
         onEndReachedThreshold={0.3}
+        ListFooterComponent={renderLoader}
       />
       <DetailsModal
         visible={modalVisible}
@@ -79,7 +94,7 @@ export const styles = StyleSheet.create({
     width: 200,
   },
   screenContainer: {
-    backgroundColor: 'green',
+    backgroundColor: Color.SECONDARY,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -87,5 +102,8 @@ export const styles = StyleSheet.create({
   listContainer: {
     width: '100%',
     paddingHorizontal: 16,
+  },
+  loader: {
+    height: 50,
   },
 });

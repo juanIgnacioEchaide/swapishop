@@ -14,7 +14,7 @@ export interface People {
   starships: string[];
   created: string[];
   edited: string[];
-  url: string[];
+  url: string;
 }
 
 export interface Planet {

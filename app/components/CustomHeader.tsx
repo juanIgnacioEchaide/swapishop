@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {Color} from '../constants';
 
 export const CustomHeader = () => {
   return (
@@ -11,7 +12,7 @@ export const CustomHeader = () => {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    backgroundColor: '#ffff',
+    backgroundColor: Color.PRIMARY,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -23,10 +24,10 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   headerTitle: {
-    fontFamily: 'Arial-unicode, sans-serif',
-    fontSize: 20,
+    fontFamily: 'Verdana, sans-serif',
+    fontSize: 25,
     fontWeight: '700',
-    color: '#333333',
+    color: '#eeee',
     marginLeft: 40,
   },
   headerLeft: {

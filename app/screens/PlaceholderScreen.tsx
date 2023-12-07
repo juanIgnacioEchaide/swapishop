@@ -1,10 +1,40 @@
 import React, {ReactNode} from 'react';
-import {Text, View} from 'react-native';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {Color} from '../constants';
 
 export const PlaceholderScreen = (): ReactNode => {
   return (
-    <View>
-      <Text>PlaceholderScreen</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Swapi</Text>
+      <Text style={styles.title}>Shop</Text>
     </View>
   );
 };
+
+const height = Dimensions.get('window').height;
+const width = Dimensions.get('window').width;
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: Color.SPLASH,
+    height: height,
+    width: width,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    transform: [{rotate: '-30deg'}], // Rotate 30 degrees to the left
+    lineHeight: 110, // Adjust line height as needed
+    top: 20, // Move the text slightly upward
+    // Other styles
+    fontWeight: 'bold',
+    borderRadius: 10,
+    backgroundColor: 'transparent',
+    margin: -8,
+    fontSize: 120,
+    color: 'white',
+    textShadowColor: 'rgba(0, 0, 0, 0.4)',
+    textShadowOffset: {width: 2, height: 2},
+    textShadowRadius: 4,
+  },
+});

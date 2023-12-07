@@ -11,7 +11,7 @@ export const ThumbNail = ({
   setModalVisible,
 }: {
   item: People;
-  imageId: number | null;
+  imageId: any;
   setSelectedItem: React.Dispatch<React.SetStateAction<People>>;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
@@ -26,9 +26,8 @@ export const ThumbNail = ({
   const handleFetchImage = useCallback(async () => {
     try {
       if (imageId) {
-        console.log(imageId);
         const {image} = await getImageArchive(imageId);
-        return setUri(image);
+        setUri(image);
       } else {
         setNotAvailable(true);
       }
@@ -39,21 +38,22 @@ export const ThumbNail = ({
 
   useEffect(() => {
     handleFetchImage();
-  }, [handleFetchImage]);
+  }, [handleFetchImage, imageId]);
 
   return (
     <TouchableOpacity
       key={item.name}
       style={styles.thumbNailContainer}
       onPress={handleSelection}>
-      <ThumbNailSummary item={item} uri={uri} notAvailable={notAvailable} />
+      {uri && (
+        <ThumbNailSummary item={item} uri={uri} notAvailable={notAvailable} />
+      )}
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   thumbNailContainer: {
-    backgroundColor: 'red',
     height: 175,
     marginVertical: 2,
     width: '100%',
