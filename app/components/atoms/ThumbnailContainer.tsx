@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   middleContainer: {
+    elevation: 5,
     height: 175,
     marginVertical: 2,
     width: '100%',

@@ -6,15 +6,9 @@ import {Color, URI} from '../../constants';
 import {CharactersList} from '../../components/molecules';
 import {Loader} from '../../components/atoms';
 import {Dimensions, StyleSheet, View} from 'react-native';
+import {getPeople} from '../../services';
 
 export const Characters = () => {
-  const getPeople = async (page: any) => {
-    const {data} = await axios.get<SwapiResponse<People>>(
-      !page ? URI.PEOPLE : `${URI.PEOPLE}/?page=${page}`,
-    );
-    return data;
-  };
-
   const [selectedItem, setSelectedItem] = useState<People>({} as People);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
