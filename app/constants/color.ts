@@ -3,4 +3,5 @@ export enum Color {
   SECONDARY = '#262b33ff',
   SHINNING = '#b639daff',
   SPLASH = '#3f39daff',
+  WHITE = '#ffff',
 }
