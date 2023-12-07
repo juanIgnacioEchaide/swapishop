@@ -54,6 +54,7 @@ export const ThumbNail = ({
 
 const styles = StyleSheet.create({
   thumbNailContainer: {
+    backgroundColor: 'red',
     height: 175,
     marginVertical: 2,
     width: '100%',
