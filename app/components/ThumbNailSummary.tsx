@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {ReactNode} from 'react';
+import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {People} from '../models';
 

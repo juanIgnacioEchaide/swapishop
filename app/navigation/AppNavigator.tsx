@@ -3,7 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {CharactersCatalogueScreen, PlaceholderScreen} from '../screens';
 import {NavigationContainer} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {CustomHeader} from '../components';
+import {AppHeader} from '../components';
 
 const Stack = createStackNavigator<RootStackParamList>();
 export type RootStackParamList = {
@@ -43,7 +43,7 @@ const AppNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          header: CustomHeader,
+          header: AppHeader,
           headerTintColor: '#333333',
           headerStyle: {
             height: 80,
