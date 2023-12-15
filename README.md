@@ -19,6 +19,12 @@ Here's a sneak peek at the tech stack:
 
 Remember, this project isn't focused on top-notch UI/UX—it's purely a demonstration of functionality.
 
+##Screen captures:
+
+![swapishop002](https://github.com/juanIgnacioEchaide/swapishop/assets/43832189/3949cb2a-08ed-4494-9b87-06c0c5b988a6)
+![swapishop001](https://github.com/juanIgnacioEchaide/swapishop/assets/43832189/bce3067b-21e8-4616-8669-d68555683505)
+![swapishop000](https://github.com/juanIgnacioEchaide/swapishop/assets/43832189/1c860b24-8ba8-49a7-8b73-129e287f6515)
+
 Explore the repository here and dive into the world of infinite scrolling and advanced state management with React Query! 🌟
 
 [[Link to Repository](https://github.com/juanIgnacioEchaide/swapishop/)]
