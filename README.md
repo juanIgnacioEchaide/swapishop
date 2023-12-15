@@ -1,6 +1,6 @@
-🚀 Exciting News! 🚀
+🚀Hi there! Some React Native Mobile App Here 🚀
 
-📁 Check out our latest repository showcasing a React Native CLI mobile app! This project flaunts a single infinite scroll-screen powered by React Query state management using useInfiniteQuery. While it might lack unit-test coverage, it's a fantastic demo to explore key features:
+📁 Check out my repository showcasing a React Native CLI mobile app! This project flaunts a single infinite scroll-screen powered by React Query state management using useInfiniteQuery. While it might lack unit-test coverage, it's a fantastic demo to explore key features:
 
 🔄 Infinite Scroll Screen
 🧠 State Management with React Query Cache
@@ -21,7 +21,7 @@ Remember, this project isn't focused on top-notch UI/UX—it's purely a demonstr
 
 Explore the repository here and dive into the world of infinite scrolling and advanced state management with React Query! 🌟
 
-[Link to Repository]
+[[Link to Repository](https://github.com/juanIgnacioEchaide/swapishop/)]
 
 #ReactNative #ReactQuery #InfiniteScrolling #MobileDevelopment #TechDemo #OpenSource
 
