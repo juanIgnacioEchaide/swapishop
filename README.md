@@ -1,7 +1,6 @@
 ### React Native Infinite Scroll Example
 
 This repository contains a simple React Native mobile app demonstrating a single infinite scroll screen using react-query for state management with the useInfiniteQuery hook.
-Features
 
     Infinite Scroll Screen: Explore an infinite scrolling experience.
     State Management: Utilizes React Query's cache for efficient state management.
@@ -11,7 +10,7 @@ Features
 This project's UI/UX isn't optimized for high quality. It's intended solely for demonstration purposes.
 Installation
 
-    Clone this repository.
+    `git clone `
     Run yarn to install dependencies.
     Run yarn android to open the app on an emulator or physical device via USB debugging.
 
