@@ -10,10 +10,15 @@ This repository contains a simple React Native mobile app demonstrating a single
 This project's UI/UX isn't optimized for high quality. It's intended solely for demonstration purposes.
 Installation
 
-    `git clone `
-    Run yarn to install dependencies.
-    Run yarn android to open the app on an emulator or physical device via USB debugging.
+    git clone https://github.com/juanIgnacioEchaide/swapishop/
 
+#### install dependencies
+    yarn 
+#### run metro
+    yarn start 
+#### run android
+    yarn android
+    
 ## Dependencies
 
     @react-native-community/masked-view: ^0.1.11
