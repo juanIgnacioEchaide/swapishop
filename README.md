@@ -25,7 +25,21 @@ This project IS NOT MENT TO SHOW A COOL UX/UI, ONLY INFINITE SCROLL & STATE MANA
 #### run android
 
     yarn android
-    
+
+## Captures    
+
+Splash screen
+
+![swapishop002](https://github.com/juanIgnacioEchaide/swapishop/assets/43832189/14c46a8c-798f-4954-8d65-ad7b095f7858)
+
+Infinite scroll
+
+![swapishop000](https://github.com/juanIgnacioEchaide/swapishop/assets/43832189/638724a2-5527-4814-a2ee-de3b8301772b)
+
+Details modal
+
+![swapishop001](https://github.com/juanIgnacioEchaide/swapishop/assets/43832189/61fd63d0-daea-4b92-a077-fc19ea298bda)
+
 ## Dependencies
 
     @react-native-community/masked-view: ^0.1.11
