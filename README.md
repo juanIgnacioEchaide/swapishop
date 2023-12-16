@@ -17,7 +17,8 @@ This project is not ment to be a good example of UX/UI but only an exmaple of st
 
 ### How does it work
 
-![Uploading Screenshot from 2023-12-16 00-24-39.png…]()
+![Screenshot from 2023-12-16 00-24-39](https://github.com/juanIgnacioEchaide/swapishop/assets/43832189/02e1671f-29c9-43aa-8ce7-69740cf91fdd)
+
 
 This representation showcases the hierarchy where AppNavigator contains the navigation setup, including the CharactersCatalogueScreen. 
 Inside the CharactersCatalogueScreen, the Characters component utilizes the useInfiniteQuery hook for data management, and it interacts with the DetailsModal component for displaying detailed information about a character.
