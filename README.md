@@ -1,34 +1,53 @@
-🚀Hi there! Some React Native Mobile App Here 🚀
+React Native Infinite Scroll Example
 
-📁 Check out my repository showcasing a React Native CLI mobile app! This project flaunts a single infinite scroll-screen powered by React Query state management using useInfiniteQuery. While it might lack unit-test coverage, it's a fantastic demo to explore key features:
+This repository contains a simple React Native mobile app demonstrating a single infinite scroll screen using react-query for state management with the useInfiniteQuery hook.
+Features
 
-🔄 Infinite Scroll Screen
-🧠 State Management with React Query Cache
+    Infinite Scroll Screen: Explore an infinite scrolling experience.
+    State Management: Utilizes React Query's cache for efficient state management.
 
-Here's a sneak peek at the tech stack:
+Note
 
-    React Native 0.72.7
-    React 18.2.0
-    React Query 5.10.0
-    Navigation via React Navigation 6.1.9
-    And a bunch more!
+This project's UI/UX isn't optimized for high quality. It's intended solely for demonstration purposes.
+Installation
 
-⚙️ To get started:
-1️⃣ Run yarn to install dependencies.
-2️⃣ Execute yarn android to fire up the emulator or connect to a physical device via USB debugging.
+    Clone this repository.
+    Run yarn to install dependencies.
+    Run yarn android to open the app on an emulator or physical device via USB debugging.
 
-Remember, this project isn't focused on top-notch UI/UX—it's purely a demonstration of functionality.
+Dependencies
 
-##Screen captures:
+    @react-native-community/masked-view: ^0.1.11
+    @react-navigation/native: ^6.1.9
+    @react-navigation/native-stack: ^6.9.17
+    @react-navigation/stack: ^6.3.20
+    @tanstack/react-query: ^5.10.0
+    axios: ^1.6.2
+    react: 18.2.0
+    react-native: 0.72.7
+    react-native-gesture-handler: ^2.14.0
+    react-native-loader: ^1.3.1
+    react-native-reanimated: ^3.6.0
+    react-native-safe-area-context: ^4.7.4
+    react-native-screens: ^3.27.0
+    react-native-svg: ^14.0.0
+    react-native-svg-transformer: ^1.1.0
 
-![swapishop002](https://github.com/juanIgnacioEchaide/swapishop/assets/43832189/3949cb2a-08ed-4494-9b87-06c0c5b988a6)
-![swapishop001](https://github.com/juanIgnacioEchaide/swapishop/assets/43832189/bce3067b-21e8-4616-8669-d68555683505)
-![swapishop000](https://github.com/juanIgnacioEchaide/swapishop/assets/43832189/1c860b24-8ba8-49a7-8b73-129e287f6515)
+Development Dependencies
 
-Explore the repository here and dive into the world of infinite scrolling and advanced state management with React Query! 🌟
-
-[[Link to Repository](https://github.com/juanIgnacioEchaide/swapishop/)]
-
-#ReactNative #ReactQuery #InfiniteScrolling #MobileDevelopment #TechDemo #OpenSource
-
-Feel free to share your feedback and contributions! 🚀
+    @babel/core: ^7.20.0
+    @babel/preset-env: ^7.20.0
+    @babel/runtime: ^7.20.0
+    @react-native/eslint-config: ^0.72.2
+    @react-native/metro-config: ^0.72.11
+    @testing-library/react-hooks: ^8.0.1
+    @tsconfig/react-native: ^3.0.0
+    @types/react: ^18.0.24
+    @types/react-test-renderer: ^18.0.0
+    babel-jest: ^29.2.1
+    eslint: ^8.19.0
+    jest: ^29.7.0
+    metro-react-native-babel-preset: 0.76.8
+    prettier: ^2.4.1
+    react-test-renderer: 18.2.0
+    typescript: 4.8.4
