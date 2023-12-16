@@ -7,7 +7,7 @@
 This project is not ment to be a good example of UX/UI but only an exmaple of state managemente in some case scenario
 
 ### clone rep
-      git clone [https://github.com/juanIgnacioEchaide/chicagogallery.git](https://github.com/juanIgnacioEchaide/swapishop)
+      git clone https://github.com/juanIgnacioEchaide/swapishop
 ### install dependencies
       yarn
 ### run metro terminal
